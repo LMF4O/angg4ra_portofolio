@@ -5,8 +5,8 @@ export interface Props {
 }
 
 const {
-  title = "Argy Anggara — Data Analyst & Data Scientist",
-  description = "Portfolio of Argy Anggara, a Data Analyst and Data Scientist based in Jakarta/Bekasi."
+  title = "Argy — Data Analyst & Data Scientist",
+  description = "Portfolio of Argy, a Data Analyst and Data Scientist based in Jakarta/Bogor."
 } = Astro.props;
 ---
 
@@ -18,47 +18,42 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Preconnect for Google Fonts performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
 
-    <!--
-      GLOBAL scroll reveal — single observer for all [data-reveal] elements.
-      Components must NOT have their own reveal IntersectionObserver.
-      Just add data-reveal (and optionally data-delay="200") to any element.
-    -->
+    <!-- ✅ GLOBAL scroll reveal — satu observer untuk semua section -->
     <script>
       function initReveal() {
         const els = document.querySelectorAll('[data-reveal]');
-        if (!els.length) return;
+        if (els.length === 0) return;
 
         const obs = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target as HTMLElement;
-            const delay = parseInt(el.dataset.delay || '0');
-            setTimeout(() => {
-              el.style.opacity  = '1';
-              el.style.transform = 'translateY(0)';
-            }, delay);
-            obs.unobserve(el);
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = parseInt(el.dataset.delay || '0');
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+                el.classList.add('revealed');
+              }, delay);
+              obs.unobserve(el);
+            }
           });
-        }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
         els.forEach(el => {
           const e = el as HTMLElement;
-          e.style.opacity   = '0';
-          e.style.transform = 'translateY(20px)';
-          e.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          // Set initial state via JS (lebih reliable dari CSS)
+          e.style.opacity = '0';
+          e.style.transform = 'translateY(22px)';
+          e.style.transition = 'opacity 0.65s ease, transform 0.65s ease';
           obs.observe(e);
         });
       }
 
+      // Jalankan setelah DOM ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initReveal);
       } else {
@@ -70,9 +65,4 @@ const {
 
 <style is:global>
   @import '../styles/global.css';
-
-  /* Ensure no component-level [data-reveal] CSS overrides the JS-set styles */
-  [data-reveal] {
-    will-change: opacity, transform;
-  }
 </style>
