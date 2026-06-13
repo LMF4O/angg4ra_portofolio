@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import CustomCursor from '../components/CustomCursor.astro';
 ---
 
 <BaseLayout>
-  <main>
-    <p class="text-cyan font-mono p-8">
-      > portfolio loading... ✅
-    </p>
-  </main>
+  <CustomCursor />
+  <Navbar />
+  <Hero />
+
+  <!-- Placeholder sections (diisi di phase berikutnya) -->
+  <section id="about"      class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># about — coming soon</p></section>
+  <section id="skills"     class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># skills — coming soon</p></section>
+  <section id="projects"   class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># projects — coming soon</p></section>
+  <section id="experience" class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># experience — coming soon</p></section>
+  <section id="blog"       class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># blog — coming soon</p></section>
+  <section id="misc"       class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># misc — coming soon</p></section>
+  <section id="contact"    class="min-h-screen flex items-center justify-center"><p class="font-mono text-muted"># contact — coming soon</p></section>
 </BaseLayout>

@@ -1,0 +1,320 @@
+---
+import LowpolyCanvas from './LowpolyCanvas.astro';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+
+  <!-- Lowpoly Background -->
+  <LowpolyCanvas />
+
+  <!-- Overlay gradient biar text lebih readable -->
+  <div class="absolute inset-0 bg-gradient-to-br from-bg/80 via-bg/60 to-transparent pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-16">
+    <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+
+      <!-- Left: Text -->
+      <div class="flex-1 space-y-6">
+
+        <!-- Greeting -->
+        <div class="font-mono text-sm text-cyan opacity-0 animate-fade-in" style="animation-delay: 0.2s">
+          <span class="text-muted">$</span> hello, world —
+        </div>
+
+        <!-- Name -->
+        <h1 class="font-heading font-bold text-5xl md:text-7xl text-text leading-tight opacity-0 animate-fade-in" style="animation-delay: 0.4s">
+          I'm <span class="text-gradient">Argy</span>
+        </h1>
+
+        <!-- Typewriter Role -->
+        <div class="font-mono text-lg md:text-xl text-muted opacity-0 animate-fade-in" style="animation-delay: 0.6s">
+          <span class="text-blue">&gt;</span>
+          <span id="typewriter"></span>
+          <span id="cursor-blink" class="text-cyan animate-blink">|</span>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-text/70 text-lg max-w-lg leading-relaxed opacity-0 animate-fade-in" style="animation-delay: 0.8s">
+          Turning messy data into clear decisions — and teaching the next gen to do the same.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 opacity-0 animate-fade-in" style="animation-delay: 1s">
+          <a href="#projects"
+            class="px-6 py-3 bg-blue text-white font-heading font-semibold rounded-lg hover:bg-cyan transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:-translate-y-0.5">
+            View Projects
+          </a>
+          <a href="/cv.pdf" target="_blank"
+            class="px-6 py-3 border border-border text-muted font-heading font-semibold rounded-lg hover:border-cyan hover:text-cyan transition-all duration-300 hover:-translate-y-0.5">
+            Download CV ↗
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-4 opacity-0 animate-fade-in" style="animation-delay: 1.2s">
+          <a href="https://github.com/[username]" target="_blank" class="social-link" title="GitHub">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/Argy" target="_blank" class="social-link" title="LinkedIn">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:rgyanggara@gmail.com" class="social-link" title="Email">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+
+          <!-- Divider -->
+          <div class="w-16 h-px bg-border"></div>
+          <span class="font-mono text-xs text-muted">Jakarta · Bogor</span>
+        </div>
+      </div>
+
+      <!-- Right: Avatar -->
+      <div class="relative flex-shrink-0 opacity-0 animate-fade-in" style="animation-delay: 0.5s">
+        <!-- Photo Toggle Button -->
+        <button id="photo-toggle"
+          class="absolute -top-3 -right-3 z-20 bg-surface border border-border text-xs font-mono text-muted px-2 py-1 rounded-full hover:border-cyan hover:text-cyan transition-all duration-200"
+          title="Switch avatar style">
+          📸 real
+        </button>
+
+        <!-- Hexagon Frame -->
+        <div class="relative w-52 h-52 md:w-64 md:h-64">
+          <!-- Glow effect -->
+          <div class="absolute inset-0 rounded-full bg-blue/20 blur-2xl scale-110"></div>
+
+          <!-- Clip container -->
+          <div class="relative w-full h-full" style="clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)">
+            <!-- Real photo -->
+            <img
+              id="avatar-real"
+              src="/images/avatar-real.webp"
+              alt="Argy - Data Analyst"
+              class="w-full h-full object-cover transition-opacity duration-300"
+              onerror="this.src='/images/avatar-placeholder.svg'"
+            />
+            <!-- Illustrated avatar (hidden by default) -->
+            <img
+              id="avatar-illustrated"
+              src="/images/avatar-illustrated.webp"
+              alt="Argy - Illustrated"
+              class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300"
+              onerror="this.src='/images/avatar-placeholder.svg'"
+            />
+          </div>
+
+          <!-- Hexagon border -->
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+            <polygon
+              points="100,4 188,52 188,148 100,196 12,148 12,52"
+              fill="none"
+              stroke="#3B82F6"
+              stroke-width="1.5"
+              opacity="0.6"
+            />
+            <polygon
+              points="100,4 188,52 188,148 100,196 12,148 12,52"
+              fill="none"
+              stroke="#06B6D4"
+              stroke-width="0.5"
+              opacity="0.3"
+              transform="scale(0.92) translate(9, 9)"
+            />
+          </svg>
+
+          <!-- Availability badge -->
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-surface border border-border px-3 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-mono text-xs text-muted">open to work</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fade-in" style="animation-delay: 1.5s">
+      <span class="font-mono text-xs text-muted">scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-muted to-transparent animate-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(135deg, #3B82F6, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .social-link {
+    color: #64748B;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .social-link:hover {
+    color: #06B6D4;
+    transform: translateY(-2px);
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes scroll-line {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease forwards;
+  }
+
+  .animate-blink {
+    animation: blink 1s ease-in-out infinite;
+  }
+
+  .animate-scroll-line {
+    animation: scroll-line 2s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // ── Typewriter ──
+  const roles = [
+    'Data Analyst',
+    'Data Scientist',
+    'Coding Teacher',
+    'ML Enthusiast',
+    'Lifelong Learner',
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typeEl = document.getElementById('typewriter')!;
+
+  function type() {
+    const current = roles[roleIndex];
+    if (isDeleting) {
+      typeEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typeEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let speed = isDeleting ? 60 : 110;
+
+    if (!isDeleting && charIndex === current.length) {
+      speed = 1800; // pause di akhir kata
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      speed = 400;
+    }
+
+    setTimeout(type, speed);
+  }
+
+  setTimeout(type, 1200);
+
+  // ── Photo Toggle ──
+  const toggleBtn = document.getElementById('photo-toggle')!;
+  const avatarReal = document.getElementById('avatar-real') as HTMLImageElement;
+  const avatarIllustrated = document.getElementById('avatar-illustrated') as HTMLImageElement;
+
+  let showingReal = localStorage.getItem('avatarStyle') !== 'illustrated';
+
+  function applyAvatarState() {
+    if (showingReal) {
+      avatarReal.style.opacity = '1';
+      avatarIllustrated.style.opacity = '0';
+      toggleBtn.textContent = '📸 real';
+    } else {
+      avatarReal.style.opacity = '0';
+      avatarIllustrated.style.opacity = '1';
+      toggleBtn.textContent = '🎨 illustrated';
+    }
+  }
+
+  applyAvatarState();
+
+  toggleBtn.addEventListener('click', () => {
+    showingReal = !showingReal;
+    localStorage.setItem('avatarStyle', showingReal ? 'real' : 'illustrated');
+    applyAvatarState();
+  });
+
+  // ── Easter Egg: ketik "argy" ──
+  let typed = '';
+  document.addEventListener('keydown', (e) => {
+    typed += e.key.toLowerCase();
+    if (typed.length > 4) typed = typed.slice(-4);
+    if (typed === 'argy') {
+      launchConfetti();
+      typed = '';
+    }
+  });
+
+  function launchConfetti() {
+    const colors = ['#3B82F6', '#06B6D4', '#8B5CF6', '#10B981', '#F59E0B'];
+    for (let i = 0; i < 80; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position: fixed;
+        left: ${Math.random() * 100}vw;
+        top: -10px;
+        width: ${4 + Math.random() * 6}px;
+        height: ${4 + Math.random() * 6}px;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+        pointer-events: none;
+        z-index: 9999;
+        animation: confetti-fall ${1.5 + Math.random() * 2}s ease forwards;
+      `;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3500);
+    }
+
+    // Toast message
+    const toast = document.createElement('div');
+    toast.innerHTML = `
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+        hey, you found me. 👋<br>
+        <span style="color: #64748B;">here's a secret: I debug with print() too.</span>
+      </div>
+    `;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #131720;
+      border: 1px solid #3B82F6;
+      color: #E2E8F0;
+      padding: 16px 20px;
+      border-radius: 12px;
+      z-index: 9999;
+      animation: toast-in 0.4s ease forwards;
+      box-shadow: 0 0 20px rgba(59,130,246,0.3);
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+  }
+</script>

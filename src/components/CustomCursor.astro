@@ -1,0 +1,83 @@
+<!-- Cursor elements -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<style>
+  #cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #06B6D4;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  #cursor-ring {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #3B82F6;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+
+  #cursor-ring.hovering {
+    width: 44px;
+    height: 44px;
+    border-color: #06B6D4;
+    background: rgba(6, 182, 212, 0.08);
+  }
+
+  #cursor-ring.clicking {
+    width: 20px;
+    height: 20px;
+    background: rgba(59, 130, 246, 0.3);
+  }
+</style>
+
+<script>
+  // Hide on mobile
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.body.style.cursor = 'none';
+
+    const dot = document.getElementById('cursor-dot')!;
+    const ring = document.getElementById('cursor-ring')!;
+
+    let ringX = 0, ringY = 0;
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    // Ring lags behind dot (smooth follow)
+    function updateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(updateRing);
+    }
+    updateRing();
+
+    // Hover effect on interactive elements
+    const interactives = document.querySelectorAll('a, button, [role="button"]');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+    });
+
+    // Click burst
+    document.addEventListener('mousedown', () => ring.classList.add('clicking'));
+    document.addEventListener('mouseup', () => ring.classList.remove('clicking'));
+  }
+</script>
