@@ -10,6 +10,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-
-  adapter: cloudflare()
+  output: 'static',
+  adapter: cloudflare({
+    session: false
+  })
 });
