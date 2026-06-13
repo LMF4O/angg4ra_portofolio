@@ -1,9 +1,9 @@
 ---
 const stats = [
-  { value: 10, label: 'Projects Built', suffix: '+' },
-  { value: 15, label: 'Tools Mastered', suffix: '+' },
-  { value: 6,  label: 'Semesters', suffix: 'th' },
-  { value: 30, label: 'Students Taught', suffix: '+' },
+  { value: 10, label: 'Projects Built',   suffix: '+' },
+  { value: 15, label: 'Tools Mastered',   suffix: '+' },
+  { value: 6,  label: 'Semesters',        suffix: 'th' },
+  { value: 30, label: 'Students Taught',  suffix: '+' },
 ];
 
 const funFacts = [
@@ -26,135 +26,186 @@ const funFacts = [
 ];
 ---
 
-<section id="about" class="relative py-32 overflow-hidden">
+<section id="about" style="position:relative; padding: 96px 0; overflow:hidden;">
 
-  <!-- Section background decoration -->
-  <div class="absolute top-0 right-0 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- BG decorations -->
+  <div style="position:absolute;top:0;right:0;width:384px;height:384px;background:radial-gradient(circle,rgba(59,130,246,0.06),transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:0;left:0;width:256px;height:256px;background:radial-gradient(circle,rgba(6,182,212,0.05),transparent 70%);pointer-events:none;"></div>
 
-  <div class="max-w-6xl mx-auto px-6">
+  <div style="max-width:1152px; margin:0 auto; padding:0 24px;">
 
     <!-- Section Header -->
-    <div class="flex items-center gap-4 mb-16 opacity-0" data-reveal>
-      <span class="font-mono text-blue text-sm">01.</span>
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text">About Me</h2>
-      <div class="flex-1 h-px bg-border"></div>
+    <div data-reveal style="display:flex; align-items:center; gap:16px; margin-bottom:64px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#3B82F6;">01.</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(1.6rem,4vw,2.25rem); color:#E2E8F0; white-space:nowrap;">About Me</h2>
+      <div style="flex:1; height:1px; background:#1E2535;"></div>
     </div>
 
-    <!-- Main Grid -->
-    <div class="grid md:grid-cols-2 gap-16 items-start">
+    <!-- Two-column grid -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
 
-      <!-- Left: Photo + Stats -->
-      <div class="space-y-8">
+      <!-- ── LEFT: Photo + Stats ── -->
+      <div style="display:flex; flex-direction:column; gap:32px;">
 
-        <!-- Photo with toggle (sync with hero) -->
-        <div class="relative group opacity-0" data-reveal data-delay="100">
-          <div class="relative w-full max-w-sm mx-auto md:mx-0">
-
-            <!-- Decorative geometric frame -->
-            <div class="absolute -inset-3 border border-blue/20 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
-            <div class="absolute -inset-3 border border-cyan/10 rounded-xl -rotate-2 group-hover:-rotate-3 transition-transform duration-500"></div>
-
-            <!-- Photo container -->
-            <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-surface">
-              <img
-                id="about-avatar-real"
-                src="/images/avatar-real.webp"
-                alt="Argy — candid"
-                class="w-full h-full object-cover transition-opacity duration-300"
-                onerror="this.src='/images/avatar-placeholder.svg'"
-              />
-              <img
-                id="about-avatar-illustrated"
-                src="/images/avatar-illustrated.webp"
-                alt="Argy — illustrated"
-                class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300"
-                onerror="this.src='/images/avatar-placeholder.svg'"
-              />
-
-              <!-- Overlay gradient -->
-              <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-surface/80 to-transparent"></div>
-
-              <!-- Photo toggle button -->
-              <button id="about-photo-toggle"
-                class="absolute bottom-4 right-4 bg-surface/90 backdrop-blur border border-border text-xs font-mono text-muted px-2 py-1 rounded-full hover:border-cyan hover:text-cyan transition-all duration-200">
-                📸 real
-              </button>
+        <!-- Photo card -->
+        <div data-reveal data-delay="100" style="position:relative;">
+          <div id="about-photo-wrap" style="
+            position:relative;
+            border-radius:16px;
+            overflow:hidden;
+            aspect-ratio:4/5;
+            background:#131720;
+            border:1px solid #1E2535;
+          ">
+            <img id="about-avatar-real"
+              src="/images/avatar-real.webp" alt="Argy"
+              style="width:100%;height:100%;object-fit:cover;transition:opacity 0.3s;"
+              onerror="this.style.display='none'"
+            />
+            <img id="about-avatar-illustrated"
+              src="/images/avatar-illustrated.webp" alt="Argy illustrated"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s;"
+              onerror="this.style.display='none'"
+            />
+            <!-- Fallback -->
+            <div id="about-avatar-fallback" style="
+              position:absolute;inset:0;
+              display:flex;align-items:center;justify-content:center;
+              background:#131720;
+            ">
+              <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:72px;color:#3B82F6;">A</span>
             </div>
+            <!-- Bottom gradient -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,rgba(19,23,32,0.8));pointer-events:none;"></div>
+            <!-- Toggle btn -->
+            <button id="about-photo-toggle" style="
+              position:absolute;bottom:12px;right:12px;
+              background:rgba(19,23,32,0.9);
+              border:1px solid #1E2535;
+              color:#64748B;
+              font-family:'JetBrains Mono',monospace;
+              font-size:11px;
+              padding:4px 10px;
+              border-radius:999px;
+              cursor:pointer;
+              transition:border-color 0.2s,color 0.2s;
+            "
+            onmouseover="this.style.borderColor='#06B6D4';this.style.color='#06B6D4'"
+            onmouseout="this.style.borderColor='#1E2535';this.style.color='#64748B'"
+            >📸 real</button>
           </div>
+          <!-- Geometric frame decorators -->
+          <div style="position:absolute;inset:-10px;border:1px solid rgba(59,130,246,0.15);border-radius:18px;transform:rotate(2deg);pointer-events:none;transition:transform 0.5s;" class="geo-frame-1"></div>
+          <div style="position:absolute;inset:-10px;border:1px solid rgba(6,182,212,0.08);border-radius:18px;transform:rotate(-1.5deg);pointer-events:none;transition:transform 0.5s;" class="geo-frame-2"></div>
         </div>
 
         <!-- Stat Counters -->
-        <div class="grid grid-cols-2 gap-4 opacity-0" data-reveal data-delay="200">
-          {stats.map((stat, i) => (
-            <div class="bg-surface border border-border rounded-xl p-4 hover:border-blue/50 transition-colors duration-300 group">
-              <div class="font-heading font-bold text-2xl text-blue group-hover:text-cyan transition-colors duration-300">
+        <div data-reveal data-delay="200" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          {stats.map((stat) => (
+            <div style="
+              background:#131720;
+              border:1px solid #1E2535;
+              border-radius:12px;
+              padding:16px;
+              transition:border-color 0.3s;
+            "
+            onmouseover="this.style.borderColor='rgba(59,130,246,0.5)'"
+            onmouseout="this.style.borderColor='#1E2535'"
+            >
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#3B82F6;display:flex;align-items:baseline;gap:2px;">
                 <span class="counter" data-target={stat.value}>0</span>
-                <span class="text-cyan">{stat.suffix}</span>
+                <span style="color:#06B6D4;font-size:18px;">{stat.suffix}</span>
               </div>
-              <div class="font-mono text-xs text-muted mt-1">{stat.label}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748B;margin-top:4px;">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Right: Text + Fun Facts -->
-      <div class="space-y-8">
+      <!-- ── RIGHT: Text + Currently + Flip Cards ── -->
+      <div style="display:flex;flex-direction:column;gap:32px;">
 
-        <!-- Bio Text -->
-        <div class="space-y-4 opacity-0" data-reveal data-delay="150">
-          <p class="text-text/80 leading-relaxed">
+        <!-- Bio -->
+        <div data-reveal data-delay="150" style="display:flex;flex-direction:column;gap:16px;">
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:rgba(226,232,240,0.8);line-height:1.75;">
             Hey — I'm Argy, an Information Systems student at Unindra who somehow ended up teaching kids to code at
-            <span class="text-cyan font-medium">DigiKidz Cibubur</span> while simultaneously trying to become a data scientist.
+            <span style="color:#06B6D4;font-weight:500;">DigiKidz Cibubur</span> while simultaneously trying to become a data scientist.
             Structured chaos, basically.
           </p>
-          <p class="text-text/80 leading-relaxed">
-            I'm drawn to the intersection of <span class="text-blue font-medium">data, education, and technology</span> —
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:rgba(226,232,240,0.8);line-height:1.75;">
+            I'm drawn to the intersection of <span style="color:#3B82F6;font-weight:500;">data, education, and technology</span> —
             building ML models by day, debugging students' Scratch projects by afternoon.
             My thesis is literally about predicting student performance, so yeah, data follows me everywhere.
           </p>
-          <p class="text-text/80 leading-relaxed">
-            As an <span class="text-purple font-medium">INTP</span>, I overthink problems until they're elegant solutions.
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:rgba(226,232,240,0.8);line-height:1.75;">
+            As an <span style="color:#8B5CF6;font-weight:500;">INTP</span>, I overthink problems until they're elegant solutions.
             I prefer async communication, clean pipelines, and dashboards that actually make sense.
             If you've read this far — we'd probably get along.
           </p>
         </div>
 
-        <!-- Currently section -->
-        <div class="bg-surface border border-border rounded-xl p-5 space-y-3 opacity-0" data-reveal data-delay="250">
-          <div class="font-mono text-xs text-blue">// currently</div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
-              <span class="text-sm text-text/70">Building thesis: DigiKidz student analytics system</span>
+        <!-- Currently -->
+        <div data-reveal data-delay="250" style="
+          background:#131720;
+          border:1px solid #1E2535;
+          border-radius:12px;
+          padding:20px;
+          display:flex;
+          flex-direction:column;
+          gap:12px;
+        ">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3B82F6;">// currently</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#10B981;flex-shrink:0;animation:pulse-dot 2s infinite;"></span>
+              <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(226,232,240,0.7);">Building thesis: DigiKidz student analytics system</span>
             </div>
-            <div class="flex items-center gap-3">
-              <span class="w-1.5 h-1.5 rounded-full bg-blue animate-pulse flex-shrink-0"></span>
-              <span class="text-sm text-text/70">Learning: SHAP explainability & MLflow</span>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#3B82F6;flex-shrink:0;animation:pulse-dot 2s infinite 0.4s;"></span>
+              <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(226,232,240,0.7);">Learning: SHAP explainability & MLflow</span>
             </div>
-            <div class="flex items-center gap-3">
-              <span class="w-1.5 h-1.5 rounded-full bg-purple animate-pulse flex-shrink-0"></span>
-              <span class="text-sm text-text/70">Teaching: Scratch & Python basics @ DigiKidz</span>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#8B5CF6;flex-shrink:0;animation:pulse-dot 2s infinite 0.8s;"></span>
+              <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(226,232,240,0.7);">Teaching: Scratch & Python basics @ DigiKidz</span>
             </div>
           </div>
         </div>
 
-        <!-- Fun Facts Flip Cards -->
-        <div class="opacity-0" data-reveal data-delay="300">
-          <div class="font-mono text-xs text-muted mb-4">// hover or tap to flip</div>
-          <div class="grid grid-cols-2 gap-3">
+        <!-- Fun Facts -->
+        <div data-reveal data-delay="320">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748B;margin-bottom:12px;">// hover or tap to flip</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
             {funFacts.map((fact) => (
-              <div class="flip-card h-24 cursor-pointer" tabindex="0" role="button">
+              <div class="flip-card" tabindex="0" role="button" style="height:96px;cursor:pointer;">
                 <div class="flip-card-inner">
-                  <!-- Front -->
-                  <div class="flip-card-front bg-surface border border-border rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 hover:border-blue/40 transition-colors">
-                    <span class="text-2xl">{fact.front.icon}</span>
-                    <span class="text-xs text-muted leading-tight">{fact.front.text}</span>
+                  <div class="flip-card-front" style="
+                    position:absolute;inset:0;
+                    background:#131720;
+                    border:1px solid #1E2535;
+                    border-radius:12px;
+                    display:flex;flex-direction:column;
+                    align-items:center;justify-content:center;
+                    gap:8px;text-align:center;padding:12px;
+                    backface-visibility:hidden;
+                    -webkit-backface-visibility:hidden;
+                  ">
+                    <span style="font-size:22px;">{fact.front.icon}</span>
+                    <span style="font-family:'Inter',sans-serif;font-size:11px;color:#64748B;line-height:1.4;">{fact.front.text}</span>
                   </div>
-                  <!-- Back -->
-                  <div class="flip-card-back bg-surface border border-cyan/30 rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2">
-                    <span class="text-2xl">{fact.back.icon}</span>
-                    <span class="text-xs text-cyan/80 leading-tight italic">"{fact.back.text}"</span>
+                  <div class="flip-card-back" style="
+                    position:absolute;inset:0;
+                    background:#131720;
+                    border:1px solid rgba(6,182,212,0.3);
+                    border-radius:12px;
+                    display:flex;flex-direction:column;
+                    align-items:center;justify-content:center;
+                    gap:8px;text-align:center;padding:12px;
+                    backface-visibility:hidden;
+                    -webkit-backface-visibility:hidden;
+                    transform:rotateY(180deg);
+                  ">
+                    <span style="font-size:22px;">{fact.back.icon}</span>
+                    <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(6,182,212,0.8);line-height:1.4;font-style:italic;">"{fact.back.text}"</span>
                   </div>
                 </div>
               </div>
@@ -167,125 +218,99 @@ const funFacts = [
   </div>
 </section>
 
+<!-- Mobile responsive override -->
 <style>
-  /* Flip Card */
-  .flip-card {
-    perspective: 1000px;
+  @media (max-width: 768px) {
+    #about > div > div:last-child {
+      grid-template-columns: 1fr !important;
+    }
   }
 
+  /* Flip card */
+  .flip-card { perspective: 1000px; }
   .flip-card-inner {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%; height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
     transform-style: preserve-3d;
   }
-
   .flip-card:hover .flip-card-inner,
   .flip-card:focus .flip-card-inner,
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg);
   }
 
-  .flip-card-front,
-  .flip-card-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+  /* Pulse animation for currently dots */
+  @keyframes pulse-dot {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.5; transform:scale(0.75); }
   }
 
-  .flip-card-back {
-    transform: rotateY(180deg);
-  }
-
-  /* Reveal animation */
-  [data-reveal] {
-    transition: opacity 0.7s ease, transform 0.7s ease;
-    transform: translateY(24px);
-  }
-
-  [data-reveal].revealed {
-    opacity: 1 !important;
-    transform: translateY(0);
-  }
+  /* Geo frame hover */
+  #about-photo-wrap:hover ~ .geo-frame-1 { transform: rotate(5deg) !important; }
+  #about-photo-wrap:hover ~ .geo-frame-2 { transform: rotate(-3deg) !important; }
 </style>
 
 <script>
-  // ── Scroll Reveal ──
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target as HTMLElement;
-        const delay = parseInt(el.dataset.delay || '0');
-        setTimeout(() => el.classList.add('revealed'), delay);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.15 });
+  // ── Hide fallback when image loads ──
+  const realImg  = document.getElementById('about-avatar-real')        as HTMLImageElement;
+  const illusImg = document.getElementById('about-avatar-illustrated') as HTMLImageElement;
+  const fallback = document.getElementById('about-avatar-fallback')    as HTMLElement;
 
-  revealEls.forEach(el => observer.observe(el));
+  function hideFallback() { if (fallback) fallback.style.display = 'none'; }
+  realImg?.addEventListener('load', hideFallback);
+  illusImg?.addEventListener('load', hideFallback);
+  if (realImg?.complete && realImg.naturalWidth > 0) hideFallback();
 
   // ── Stat Counter ──
   const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver((entries) => {
+  const cObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target as HTMLElement;
-        const target = parseInt(el.dataset.target || '0');
-        let current = 0;
-        const step = Math.ceil(target / 40);
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = current.toString();
-          if (current >= target) clearInterval(timer);
-        }, 40);
-        counterObserver.unobserve(el);
-      }
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      let cur = 0;
+      const step = Math.ceil(target / 40);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toString();
+        if (cur >= target) clearInterval(t);
+      }, 40);
+      cObs.unobserve(el);
     });
   }, { threshold: 0.5 });
+  counters.forEach(el => cObs.observe(el));
 
-  counters.forEach(el => counterObserver.observe(el));
+  // ── Photo Toggle (sync with Hero via event) ──
+  const aboutReal  = document.getElementById('about-avatar-real')        as HTMLImageElement;
+  const aboutIllus = document.getElementById('about-avatar-illustrated') as HTMLImageElement;
+  const aboutBtn   = document.getElementById('about-photo-toggle')       as HTMLButtonElement;
 
-  // ── Photo Toggle (sync with hero) ──
-  const realImgs    = [
-    document.getElementById('about-avatar-real') as HTMLImageElement,
-    document.getElementById('avatar-real') as HTMLImageElement,
-  ].filter(Boolean);
-
-  const illusImgs   = [
-    document.getElementById('about-avatar-illustrated') as HTMLImageElement,
-    document.getElementById('avatar-illustrated') as HTMLImageElement,
-  ].filter(Boolean);
-
-  const toggleBtns  = [
-    document.getElementById('about-photo-toggle') as HTMLButtonElement,
-    document.getElementById('photo-toggle') as HTMLButtonElement,
-  ].filter(Boolean);
-
-  let isReal = localStorage.getItem('avatarStyle') !== 'illustrated';
-
-  function syncAvatars() {
-    realImgs.forEach(img  => img.style.opacity  = isReal ? '1' : '0');
-    illusImgs.forEach(img => img.style.opacity  = isReal ? '0' : '1');
-    toggleBtns.forEach(btn => btn.textContent   = isReal ? '📸 real' : '🎨 illustrated');
-    localStorage.setItem('avatarStyle', isReal ? 'real' : 'illustrated');
+  function syncAbout(isReal: boolean) {
+    if (aboutReal)  aboutReal.style.opacity  = isReal ? '1' : '0';
+    if (aboutIllus) aboutIllus.style.opacity = isReal ? '0' : '1';
+    if (aboutBtn)   aboutBtn.textContent     = isReal ? '📸 real' : '🎨 illustrated';
   }
 
-  syncAvatars();
+  syncAbout(localStorage.getItem('avatarStyle') !== 'illustrated');
 
-  toggleBtns.forEach(btn => {
-    btn?.addEventListener('click', () => {
-      isReal = !isReal;
-      syncAvatars();
-    });
+  window.addEventListener('avatar-toggle', (e) => {
+    syncAbout((e as CustomEvent).detail.isReal);
   });
 
-  // ── Flip card keyboard support ──
+  aboutBtn?.addEventListener('click', () => {
+    const current = localStorage.getItem('avatarStyle') !== 'illustrated';
+    const next = !current;
+    localStorage.setItem('avatarStyle', next ? 'real' : 'illustrated');
+    syncAbout(next);
+    window.dispatchEvent(new CustomEvent('avatar-toggle', { detail: { isReal: next } }));
+  });
+
+  // ── Flip card keyboard ──
   document.querySelectorAll('.flip-card').forEach(card => {
     card.addEventListener('keydown', (e) => {
       if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault();
         card.classList.toggle('flipped');
       }
     });

@@ -2,161 +2,198 @@
 const categories = ['All', 'Languages', 'Data & ML', 'Visualization', 'Databases', 'Dev Tools'];
 
 const skills = [
-  // Languages
-  { name: 'Python',      category: 'Languages',      icon: '🐍', level: 'Advanced',    core: true,
+  { name: 'Python',       category: 'Languages',     icon: '🐍', level: 'Advanced',   core: true,
     snippet: 'import pandas as pd\nimport numpy as np' },
-  { name: 'SQL',         category: 'Languages',      icon: '🗄️',  level: 'Advanced',    core: true,
+  { name: 'SQL',          category: 'Languages',     icon: '🗄️',  level: 'Advanced',   core: true,
     snippet: 'SELECT * FROM projects\nWHERE cool = TRUE' },
-  { name: 'Java',        category: 'Languages',      icon: '☕', level: 'Proficient',  core: false,
+  { name: 'Java',         category: 'Languages',     icon: '☕', level: 'Proficient', core: false,
     snippet: 'System.out.println(\n  "Hello, World!");' },
-  { name: 'R',           category: 'Languages',      icon: '📈', level: 'Familiar',    core: false,
+  { name: 'R',            category: 'Languages',     icon: '📈', level: 'Familiar',   core: false,
     snippet: 'library(ggplot2)\nggplot(data, aes(x,y))' },
 
-  // Data & ML
-  { name: 'Pandas',      category: 'Data & ML',      icon: '🐼', level: 'Advanced',    core: true,
+  { name: 'Pandas',       category: 'Data & ML',     icon: '🐼', level: 'Advanced',   core: true,
     snippet: 'df.groupby("label")\n  .agg({"val": "mean"})' },
-  { name: 'Scikit-learn',category: 'Data & ML',      icon: '🤖', level: 'Advanced',    core: true,
-    snippet: 'model.fit(X_train, y_train)\nmodel.predict(X_test)' },
-  { name: 'SHAP',        category: 'Data & ML',      icon: '🔍', level: 'Proficient',  core: false,
+  { name: 'Scikit-learn', category: 'Data & ML',     icon: '🤖', level: 'Advanced',   core: true,
+    snippet: 'model.fit(X_train, y)\nmodel.predict(X_test)' },
+  { name: 'SHAP',         category: 'Data & ML',     icon: '🔍', level: 'Proficient', core: false,
     snippet: 'shap.summary_plot(\n  shap_values, X)' },
-  { name: 'TensorFlow',  category: 'Data & ML',      icon: '🧠', level: 'Familiar',    core: false,
+  { name: 'TensorFlow',   category: 'Data & ML',     icon: '🧠', level: 'Familiar',   core: false,
     snippet: 'model = tf.keras\n  .Sequential([...])' },
 
-  // Visualization
-  { name: 'Tableau',     category: 'Visualization',  icon: '📊', level: 'Proficient',  core: false,
+  { name: 'Tableau',      category: 'Visualization', icon: '📊', level: 'Proficient', core: false,
     snippet: '// Drag. Drop.\n// Make it beautiful.' },
-  { name: 'Power BI',    category: 'Visualization',  icon: '⚡', level: 'Proficient',  core: false,
+  { name: 'Power BI',     category: 'Visualization', icon: '⚡', level: 'Proficient', core: false,
     snippet: 'DAX: CALCULATE(\n  SUM(Sales[Revenue]))' },
-  { name: 'Matplotlib',  category: 'Visualization',  icon: '🎨', level: 'Advanced',    core: false,
-    snippet: 'plt.figure(figsize=(10,6))\nplt.plot(x, y, color="cyan")' },
-  { name: 'Seaborn',     category: 'Visualization',  icon: '🌊', level: 'Advanced',    core: false,
+  { name: 'Matplotlib',   category: 'Visualization', icon: '🎨', level: 'Advanced',   core: false,
+    snippet: 'plt.figure(figsize=(10,6))\nplt.plot(x, y, c="cyan")' },
+  { name: 'Seaborn',      category: 'Visualization', icon: '🌊', level: 'Advanced',   core: false,
     snippet: 'sns.heatmap(corr,\n  annot=True, cmap="Blues")' },
 
-  // Databases
-  { name: 'MySQL',       category: 'Databases',      icon: '🐬', level: 'Proficient',  core: false,
-    snippet: 'CREATE TABLE students (\n  id INT PRIMARY KEY,\n  name VARCHAR(100));' },
-  { name: 'PostgreSQL',  category: 'Databases',      icon: '🐘', level: 'Familiar',    core: false,
+  { name: 'MySQL',        category: 'Databases',     icon: '🐬', level: 'Proficient', core: false,
+    snippet: 'CREATE TABLE students (\n  id INT PRIMARY KEY);' },
+  { name: 'PostgreSQL',   category: 'Databases',     icon: '🐘', level: 'Familiar',   core: false,
     snippet: 'SELECT COUNT(*) FROM logs\nWHERE created_at > NOW()' },
-  { name: 'SQLite',      category: 'Databases',      icon: '💾', level: 'Proficient',  core: false,
+  { name: 'SQLite',       category: 'Databases',     icon: '💾', level: 'Proficient', core: false,
     snippet: 'conn = sqlite3.connect(\n  "local.db")' },
 
-  // Dev Tools
-  { name: 'Git',         category: 'Dev Tools',      icon: '🌿', level: 'Proficient',  core: false,
-    snippet: 'git commit -m\n  "fix: it works now 🎉"' },
-  { name: 'VS Code',     category: 'Dev Tools',      icon: '💻', level: 'Advanced',    core: false,
+  { name: 'Git',          category: 'Dev Tools',     icon: '🌿', level: 'Proficient', core: false,
+    snippet: 'git commit -m\n  "fix: works now 🎉"' },
+  { name: 'VS Code',      category: 'Dev Tools',     icon: '💻', level: 'Advanced',   core: false,
     snippet: '// Extensions: 47\n// Actually used: 12' },
-  { name: 'Jupyter',     category: 'Dev Tools',      icon: '📓', level: 'Advanced',    core: true,
+  { name: 'Jupyter',      category: 'Dev Tools',     icon: '📓', level: 'Advanced',   core: true,
     snippet: '# Cell 47 of 48\n# "just one more plot"' },
-  { name: 'Figma',       category: 'Dev Tools',      icon: '🎯', level: 'Familiar',    core: false,
-    snippet: '// I can read designs.\n// Building them? slowly.' },
+  { name: 'Figma',        category: 'Dev Tools',     icon: '🎯', level: 'Familiar',   core: false,
+    snippet: '// I can read designs.\n// Building? slowly.' },
 ];
 
-const levelColor: Record<string, string> = {
-  'Advanced':   'text-emerald-400',
-  'Proficient': 'text-blue',
-  'Familiar':   'text-muted',
+const levelMeta: Record<string, { color: string; dot: string }> = {
+  'Advanced':   { color: '#10B981', dot: '#10B981' },
+  'Proficient': { color: '#3B82F6', dot: '#3B82F6' },
+  'Familiar':   { color: '#64748B', dot: '#64748B' },
 };
 ---
 
-<section id="skills" class="relative py-32 overflow-hidden">
+<section id="skills" style="position:relative; padding:96px 0; overflow:hidden;">
 
-  <!-- Background deco -->
-  <div class="absolute top-1/2 left-0 w-80 h-80 bg-purple/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+  <!-- BG deco -->
+  <div style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(139,92,246,0.05),transparent 70%);pointer-events:none;"></div>
 
-  <div class="max-w-6xl mx-auto px-6">
+  <div style="max-width:1152px;margin:0 auto;padding:0 24px;">
 
-    <!-- Section Header -->
-    <div class="flex items-center gap-4 mb-6 opacity-0" data-reveal>
-      <span class="font-mono text-blue text-sm">02.</span>
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text">Skills & Tools</h2>
-      <div class="flex-1 h-px bg-border"></div>
+    <!-- Header -->
+    <div data-reveal style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#3B82F6;">02.</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.25rem);color:#E2E8F0;white-space:nowrap;">Skills & Tools</h2>
+      <div style="flex:1;height:1px;background:#1E2535;"></div>
     </div>
 
     <!-- Subtitle -->
-    <p class="text-muted font-mono text-sm mb-12 opacity-0" data-reveal data-delay="100">
+    <p data-reveal data-delay="80" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#64748B;margin-bottom:40px;">
       // hover a skill to peek at the code
     </p>
 
     <!-- Level Legend -->
-    <div class="flex flex-wrap items-center gap-6 mb-10 opacity-0" data-reveal data-delay="150">
-      {Object.entries(levelColor).map(([level, color]) => (
-        <div class="flex items-center gap-2">
-          <span class={`w-2 h-2 rounded-full ${level === 'Advanced' ? 'bg-emerald-400' : level === 'Proficient' ? 'bg-blue' : 'bg-muted'}`}></span>
-          <span class={`font-mono text-xs ${color}`}>{level}</span>
+    <div data-reveal data-delay="140" style="display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-bottom:32px;">
+      {Object.entries(levelMeta).map(([level, meta]) => (
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style={`width:8px;height:8px;border-radius:50%;background:${meta.dot};display:inline-block;flex-shrink:0;`}></span>
+          <span style={`font-family:'JetBrains Mono',monospace;font-size:11px;color:${meta.color};`}>{level}</span>
         </div>
       ))}
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
-        <span class="font-mono text-xs text-cyan">Core skill</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#06B6D4;display:inline-block;flex-shrink:0;animation:pulse-sk 2s infinite;"></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#06B6D4;">Core skill</span>
       </div>
     </div>
 
-    <!-- Category Filter -->
-    <div class="flex flex-wrap gap-2 mb-12 opacity-0" data-reveal data-delay="200">
-      {categories.map(cat => (
+    <!-- Filter Buttons -->
+    <div data-reveal data-delay="200" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;">
+      {categories.map((cat, i) => (
         <button
-          class="filter-btn font-mono text-xs px-4 py-2 rounded-full border transition-all duration-200"
-          class:list={[
-            cat === 'All'
-              ? 'border-blue text-blue bg-blue/10'
-              : 'border-border text-muted hover:border-blue/50 hover:text-blue/70'
-          ]}
+          class="filter-btn"
           data-filter={cat}
-        >
-          {cat}
-        </button>
+          style={`
+            font-family:'JetBrains Mono',monospace;
+            font-size:11px;
+            padding:7px 16px;
+            border-radius:999px;
+            border:1px solid ${i === 0 ? '#3B82F6' : '#1E2535'};
+            background:${i === 0 ? 'rgba(59,130,246,0.1)' : 'transparent'};
+            color:${i === 0 ? '#3B82F6' : '#64748B'};
+            cursor:pointer;
+            transition:all 0.2s ease;
+          `}
+        >{cat}</button>
       ))}
     </div>
 
     <!-- Skills Grid -->
-    <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-      {skills.map((skill) => (
+    <div id="skills-grid" style="
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap:12px;
+    ">
+      {skills.map((skill, i) => (
         <div
-          class="skill-card group relative bg-surface border rounded-xl p-4 cursor-default transition-all duration-300 hover:-translate-y-1 opacity-0"
-          class:list={[
-            skill.core
-              ? 'border-blue/30 hover:border-cyan hover:shadow-[0_0_16px_rgba(6,182,212,0.2)]'
-              : 'border-border hover:border-blue/50'
-          ]}
+          class="skill-card"
           data-reveal
-          data-delay="250"
+          data-delay={String(220 + i * 30)}
           data-category={skill.category}
-          data-skill={skill.name}
+          style={`
+            position:relative;
+            background:#131720;
+            border:1px solid ${skill.core ? 'rgba(59,130,246,0.35)' : '#1E2535'};
+            border-radius:12px;
+            padding:16px;
+            cursor:default;
+            transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          `}
+          onmouseover={`
+            this.style.transform='translateY(-4px)';
+            this.style.borderColor='${skill.core ? '#06B6D4' : 'rgba(59,130,246,0.6)'}';
+            this.style.boxShadow='0 8px 24px rgba(59,130,246,0.12)';
+            this.querySelector('.snippet-popup').style.opacity='1';
+            this.querySelector('.snippet-popup').style.transform='translateY(0)';
+          `}
+          onmouseout={`
+            this.style.transform='';
+            this.style.borderColor='${skill.core ? 'rgba(59,130,246,0.35)' : '#1E2535'}';
+            this.style.boxShadow='';
+            this.querySelector('.snippet-popup').style.opacity='0';
+            this.querySelector('.snippet-popup').style.transform='translateY(6px)';
+          `}
         >
-          <!-- Core indicator -->
+          <!-- Core dot -->
           {skill.core && (
-            <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></div>
+            <div style="position:absolute;top:8px;right:8px;width:6px;height:6px;border-radius:50%;background:#06B6D4;animation:pulse-sk 2s infinite;"></div>
           )}
 
           <!-- Icon -->
-          <div class="text-2xl mb-3">{skill.icon}</div>
+          <div style="font-size:24px;margin-bottom:10px;">{skill.icon}</div>
 
           <!-- Name -->
-          <div class="font-heading font-semibold text-sm text-text group-hover:text-cyan transition-colors duration-200 leading-tight">
-            {skill.name}
-          </div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:#E2E8F0;line-height:1.3;">{skill.name}</div>
 
           <!-- Level -->
-          <div class={`font-mono text-xs mt-1 ${levelColor[skill.level]}`}>
-            {skill.level}
-          </div>
+          <div style={`font-family:'JetBrains Mono',monospace;font-size:10px;color:${levelMeta[skill.level].color};margin-top:4px;`}>{skill.level}</div>
 
-          <!-- Floating Snippet (appears on hover) -->
-          <div class="snippet-popup absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 bg-bg border border-blue/30 rounded-lg p-3 opacity-0 pointer-events-none transition-all duration-200 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 z-20 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-            <pre class="font-mono text-xs text-cyan whitespace-pre-wrap leading-relaxed">{skill.snippet}</pre>
+          <!-- Snippet popup -->
+          <div class="snippet-popup" style="
+            position:absolute;
+            bottom:calc(100% + 10px);
+            left:50%;
+            transform:translate(-50%, 6px);
+            width:180px;
+            background:#0D0F14;
+            border:1px solid rgba(59,130,246,0.3);
+            border-radius:10px;
+            padding:10px 12px;
+            opacity:0;
+            pointer-events:none;
+            transition:opacity 0.2s ease, transform 0.2s ease;
+            z-index:30;
+            box-shadow:0 0 20px rgba(59,130,246,0.15);
+          ">
+            <pre style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#06B6D4;white-space:pre-wrap;line-height:1.6;margin:0;">{skill.snippet}</pre>
             <!-- Arrow -->
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-blue/30"></div>
+            <div style="
+              position:absolute;top:100%;left:50%;transform:translateX(-50%);
+              width:0;height:0;
+              border-left:5px solid transparent;
+              border-right:5px solid transparent;
+              border-top:5px solid rgba(59,130,246,0.3);
+            "></div>
           </div>
         </div>
       ))}
     </div>
 
     <!-- Bottom note -->
-    <div class="mt-12 text-center opacity-0" data-reveal data-delay="300">
-      <p class="font-mono text-xs text-muted">
-        // always learning · currently exploring{' '}
-        <span class="text-cyan">MLflow</span> &{' '}
-        <span class="text-cyan">dbt</span>
+    <div data-reveal data-delay="300" style="margin-top:48px;text-align:center;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748B;">
+        // always learning · currently exploring
+        <span style="color:#06B6D4;">MLflow</span> &amp;
+        <span style="color:#06B6D4;">dbt</span>
       </p>
     </div>
 
@@ -164,89 +201,60 @@ const levelColor: Record<string, string> = {
 </section>
 
 <style>
-  .skill-card {
-    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  @keyframes pulse-sk {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.4; transform:scale(0.75); }
   }
 
+  /* Hidden card when filtered out */
   .skill-card.hidden-card {
     opacity: 0 !important;
-    transform: scale(0.9);
+    transform: scale(0.88) !important;
     pointer-events: none;
-    position: absolute;
+    position: absolute !important;
   }
 
-  /* Ensure snippet never clips on edge cards */
-  .skill-card:first-child .snippet-popup,
+  /* Fix snippet popup clipping on left-edge cards */
   .skill-card:nth-child(5n+1) .snippet-popup {
-    left: 0;
-    transform: translateX(0);
+    left: 0 !important;
+    transform: translateY(6px) !important;
   }
-
-  .skill-card:nth-child(5n) .snippet-popup {
-    left: auto;
-    right: 0;
-    transform: translateX(0);
-  }
-
-  [data-reveal] {
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transform: translateY(20px);
-  }
-
-  [data-reveal].revealed {
-    opacity: 1 !important;
-    transform: translateY(0);
+  .skill-card:nth-child(5n+1):hover .snippet-popup {
+    transform: translateY(0) !important;
   }
 </style>
 
 <script>
-  // ── Scroll Reveal (reusable, jalan di semua section) ──
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target as HTMLElement;
-        const delay = parseInt(el.dataset.delay || '0');
-        setTimeout(() => el.classList.add('revealed'), delay);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  // ── Category Filter ──
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const skillCards = document.querySelectorAll('.skill-card');
-  let activeFilter = 'All';
+  // ── Filter logic ──
+  const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+  const skillCards = document.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>;
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = (btn as HTMLElement).dataset.filter!;
-      activeFilter = filter;
+      const filter = btn.dataset.filter!;
 
-      // Update button styles
+      // Reset all button styles
       filterBtns.forEach(b => {
-        b.classList.remove('border-blue', 'text-blue', 'bg-blue/10');
-        b.classList.add('border-border', 'text-muted');
+        b.style.borderColor = '#1E2535';
+        b.style.background  = 'transparent';
+        b.style.color       = '#64748B';
       });
-      btn.classList.add('border-blue', 'text-blue', 'bg-blue/10');
-      btn.classList.remove('border-border', 'text-muted');
+      // Active button
+      btn.style.borderColor = '#3B82F6';
+      btn.style.background  = 'rgba(59,130,246,0.1)';
+      btn.style.color       = '#3B82F6';
 
       // Filter cards
       skillCards.forEach(card => {
-        const el = card as HTMLElement;
-        const cat = el.dataset.category!;
+        const cat = card.dataset.category!;
         if (filter === 'All' || cat === filter) {
-          el.classList.remove('hidden-card');
-          el.style.position = '';
+          card.classList.remove('hidden-card');
+          card.style.position = '';
         } else {
-          el.classList.add('hidden-card');
+          card.classList.add('hidden-card');
           setTimeout(() => {
-            if (el.classList.contains('hidden-card')) {
-              el.style.position = 'absolute';
-            }
-          }, 400);
+            if (card.classList.contains('hidden-card')) card.style.position = 'absolute';
+          }, 300);
         }
       });
     });
