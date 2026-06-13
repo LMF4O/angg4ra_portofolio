@@ -1,0 +1,254 @@
+---
+const categories = ['All', 'Languages', 'Data & ML', 'Visualization', 'Databases', 'Dev Tools'];
+
+const skills = [
+  // Languages
+  { name: 'Python',      category: 'Languages',      icon: '🐍', level: 'Advanced',    core: true,
+    snippet: 'import pandas as pd\nimport numpy as np' },
+  { name: 'SQL',         category: 'Languages',      icon: '🗄️',  level: 'Advanced',    core: true,
+    snippet: 'SELECT * FROM projects\nWHERE cool = TRUE' },
+  { name: 'Java',        category: 'Languages',      icon: '☕', level: 'Proficient',  core: false,
+    snippet: 'System.out.println(\n  "Hello, World!");' },
+  { name: 'R',           category: 'Languages',      icon: '📈', level: 'Familiar',    core: false,
+    snippet: 'library(ggplot2)\nggplot(data, aes(x,y))' },
+
+  // Data & ML
+  { name: 'Pandas',      category: 'Data & ML',      icon: '🐼', level: 'Advanced',    core: true,
+    snippet: 'df.groupby("label")\n  .agg({"val": "mean"})' },
+  { name: 'Scikit-learn',category: 'Data & ML',      icon: '🤖', level: 'Advanced',    core: true,
+    snippet: 'model.fit(X_train, y_train)\nmodel.predict(X_test)' },
+  { name: 'SHAP',        category: 'Data & ML',      icon: '🔍', level: 'Proficient',  core: false,
+    snippet: 'shap.summary_plot(\n  shap_values, X)' },
+  { name: 'TensorFlow',  category: 'Data & ML',      icon: '🧠', level: 'Familiar',    core: false,
+    snippet: 'model = tf.keras\n  .Sequential([...])' },
+
+  // Visualization
+  { name: 'Tableau',     category: 'Visualization',  icon: '📊', level: 'Proficient',  core: false,
+    snippet: '// Drag. Drop.\n// Make it beautiful.' },
+  { name: 'Power BI',    category: 'Visualization',  icon: '⚡', level: 'Proficient',  core: false,
+    snippet: 'DAX: CALCULATE(\n  SUM(Sales[Revenue]))' },
+  { name: 'Matplotlib',  category: 'Visualization',  icon: '🎨', level: 'Advanced',    core: false,
+    snippet: 'plt.figure(figsize=(10,6))\nplt.plot(x, y, color="cyan")' },
+  { name: 'Seaborn',     category: 'Visualization',  icon: '🌊', level: 'Advanced',    core: false,
+    snippet: 'sns.heatmap(corr,\n  annot=True, cmap="Blues")' },
+
+  // Databases
+  { name: 'MySQL',       category: 'Databases',      icon: '🐬', level: 'Proficient',  core: false,
+    snippet: 'CREATE TABLE students (\n  id INT PRIMARY KEY,\n  name VARCHAR(100));' },
+  { name: 'PostgreSQL',  category: 'Databases',      icon: '🐘', level: 'Familiar',    core: false,
+    snippet: 'SELECT COUNT(*) FROM logs\nWHERE created_at > NOW()' },
+  { name: 'SQLite',      category: 'Databases',      icon: '💾', level: 'Proficient',  core: false,
+    snippet: 'conn = sqlite3.connect(\n  "local.db")' },
+
+  // Dev Tools
+  { name: 'Git',         category: 'Dev Tools',      icon: '🌿', level: 'Proficient',  core: false,
+    snippet: 'git commit -m\n  "fix: it works now 🎉"' },
+  { name: 'VS Code',     category: 'Dev Tools',      icon: '💻', level: 'Advanced',    core: false,
+    snippet: '// Extensions: 47\n// Actually used: 12' },
+  { name: 'Jupyter',     category: 'Dev Tools',      icon: '📓', level: 'Advanced',    core: true,
+    snippet: '# Cell 47 of 48\n# "just one more plot"' },
+  { name: 'Figma',       category: 'Dev Tools',      icon: '🎯', level: 'Familiar',    core: false,
+    snippet: '// I can read designs.\n// Building them? slowly.' },
+];
+
+const levelColor: Record<string, string> = {
+  'Advanced':   'text-emerald-400',
+  'Proficient': 'text-blue',
+  'Familiar':   'text-muted',
+};
+---
+
+<section id="skills" class="relative py-32 overflow-hidden">
+
+  <!-- Background deco -->
+  <div class="absolute top-1/2 left-0 w-80 h-80 bg-purple/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Header -->
+    <div class="flex items-center gap-4 mb-6 opacity-0" data-reveal>
+      <span class="font-mono text-blue text-sm">02.</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text">Skills & Tools</h2>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+
+    <!-- Subtitle -->
+    <p class="text-muted font-mono text-sm mb-12 opacity-0" data-reveal data-delay="100">
+      // hover a skill to peek at the code
+    </p>
+
+    <!-- Level Legend -->
+    <div class="flex flex-wrap items-center gap-6 mb-10 opacity-0" data-reveal data-delay="150">
+      {Object.entries(levelColor).map(([level, color]) => (
+        <div class="flex items-center gap-2">
+          <span class={`w-2 h-2 rounded-full ${level === 'Advanced' ? 'bg-emerald-400' : level === 'Proficient' ? 'bg-blue' : 'bg-muted'}`}></span>
+          <span class={`font-mono text-xs ${color}`}>{level}</span>
+        </div>
+      ))}
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
+        <span class="font-mono text-xs text-cyan">Core skill</span>
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap gap-2 mb-12 opacity-0" data-reveal data-delay="200">
+      {categories.map(cat => (
+        <button
+          class="filter-btn font-mono text-xs px-4 py-2 rounded-full border transition-all duration-200"
+          class:list={[
+            cat === 'All'
+              ? 'border-blue text-blue bg-blue/10'
+              : 'border-border text-muted hover:border-blue/50 hover:text-blue/70'
+          ]}
+          data-filter={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Skills Grid -->
+    <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      {skills.map((skill) => (
+        <div
+          class="skill-card group relative bg-surface border rounded-xl p-4 cursor-default transition-all duration-300 hover:-translate-y-1 opacity-0"
+          class:list={[
+            skill.core
+              ? 'border-blue/30 hover:border-cyan hover:shadow-[0_0_16px_rgba(6,182,212,0.2)]'
+              : 'border-border hover:border-blue/50'
+          ]}
+          data-reveal
+          data-delay="250"
+          data-category={skill.category}
+          data-skill={skill.name}
+        >
+          <!-- Core indicator -->
+          {skill.core && (
+            <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></div>
+          )}
+
+          <!-- Icon -->
+          <div class="text-2xl mb-3">{skill.icon}</div>
+
+          <!-- Name -->
+          <div class="font-heading font-semibold text-sm text-text group-hover:text-cyan transition-colors duration-200 leading-tight">
+            {skill.name}
+          </div>
+
+          <!-- Level -->
+          <div class={`font-mono text-xs mt-1 ${levelColor[skill.level]}`}>
+            {skill.level}
+          </div>
+
+          <!-- Floating Snippet (appears on hover) -->
+          <div class="snippet-popup absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 bg-bg border border-blue/30 rounded-lg p-3 opacity-0 pointer-events-none transition-all duration-200 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 z-20 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
+            <pre class="font-mono text-xs text-cyan whitespace-pre-wrap leading-relaxed">{skill.snippet}</pre>
+            <!-- Arrow -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-blue/30"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom note -->
+    <div class="mt-12 text-center opacity-0" data-reveal data-delay="300">
+      <p class="font-mono text-xs text-muted">
+        // always learning · currently exploring{' '}
+        <span class="text-cyan">MLflow</span> &{' '}
+        <span class="text-cyan">dbt</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .skill-card {
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .skill-card.hidden-card {
+    opacity: 0 !important;
+    transform: scale(0.9);
+    pointer-events: none;
+    position: absolute;
+  }
+
+  /* Ensure snippet never clips on edge cards */
+  .skill-card:first-child .snippet-popup,
+  .skill-card:nth-child(5n+1) .snippet-popup {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  .skill-card:nth-child(5n) .snippet-popup {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+  }
+
+  [data-reveal] {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(20px);
+  }
+
+  [data-reveal].revealed {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // ── Scroll Reveal (reusable, jalan di semua section) ──
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const delay = parseInt(el.dataset.delay || '0');
+        setTimeout(() => el.classList.add('revealed'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Category Filter ──
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const skillCards = document.querySelectorAll('.skill-card');
+  let activeFilter = 'All';
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter!;
+      activeFilter = filter;
+
+      // Update button styles
+      filterBtns.forEach(b => {
+        b.classList.remove('border-blue', 'text-blue', 'bg-blue/10');
+        b.classList.add('border-border', 'text-muted');
+      });
+      btn.classList.add('border-blue', 'text-blue', 'bg-blue/10');
+      btn.classList.remove('border-border', 'text-muted');
+
+      // Filter cards
+      skillCards.forEach(card => {
+        const el = card as HTMLElement;
+        const cat = el.dataset.category!;
+        if (filter === 'All' || cat === filter) {
+          el.classList.remove('hidden-card');
+          el.style.position = '';
+        } else {
+          el.classList.add('hidden-card');
+          setTimeout(() => {
+            if (el.classList.contains('hidden-card')) {
+              el.style.position = 'absolute';
+            }
+          }, 400);
+        }
+      });
+    });
+  });
+</script>

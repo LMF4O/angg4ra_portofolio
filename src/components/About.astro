@@ -1,0 +1,293 @@
+---
+const stats = [
+  { value: 10, label: 'Projects Built', suffix: '+' },
+  { value: 15, label: 'Tools Mastered', suffix: '+' },
+  { value: 6,  label: 'Semesters', suffix: 'th' },
+  { value: 30, label: 'Students Taught', suffix: '+' },
+];
+
+const funFacts = [
+  {
+    front: { icon: '📊', text: 'Obsessed with clean dashboards' },
+    back:  { icon: '😅', text: 'spent 3 hours fixing a misplaced semicolon once' },
+  },
+  {
+    front: { icon: '👨‍🏫', text: 'Teaches kids to code' },
+    back:  { icon: '💡', text: 'honestly, they teach me patience more than I teach them code' },
+  },
+  {
+    front: { icon: '🎮', text: 'Roblox dev on weekends' },
+    back:  { icon: '🤫', text: 'yes, Lua counts as a programming language' },
+  },
+  {
+    front: { icon: '☕', text: 'Runs on coffee & curiosity' },
+    back:  { icon: '🌙', text: 'peak productivity: 11pm. send help.' },
+  },
+];
+---
+
+<section id="about" class="relative py-32 overflow-hidden">
+
+  <!-- Section background decoration -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Header -->
+    <div class="flex items-center gap-4 mb-16 opacity-0" data-reveal>
+      <span class="font-mono text-blue text-sm">01.</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-text">About Me</h2>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: Photo + Stats -->
+      <div class="space-y-8">
+
+        <!-- Photo with toggle (sync with hero) -->
+        <div class="relative group opacity-0" data-reveal data-delay="100">
+          <div class="relative w-full max-w-sm mx-auto md:mx-0">
+
+            <!-- Decorative geometric frame -->
+            <div class="absolute -inset-3 border border-blue/20 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+            <div class="absolute -inset-3 border border-cyan/10 rounded-xl -rotate-2 group-hover:-rotate-3 transition-transform duration-500"></div>
+
+            <!-- Photo container -->
+            <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-surface">
+              <img
+                id="about-avatar-real"
+                src="/images/avatar-real.webp"
+                alt="Argy — candid"
+                class="w-full h-full object-cover transition-opacity duration-300"
+                onerror="this.src='/images/avatar-placeholder.svg'"
+              />
+              <img
+                id="about-avatar-illustrated"
+                src="/images/avatar-illustrated.webp"
+                alt="Argy — illustrated"
+                class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300"
+                onerror="this.src='/images/avatar-placeholder.svg'"
+              />
+
+              <!-- Overlay gradient -->
+              <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-surface/80 to-transparent"></div>
+
+              <!-- Photo toggle button -->
+              <button id="about-photo-toggle"
+                class="absolute bottom-4 right-4 bg-surface/90 backdrop-blur border border-border text-xs font-mono text-muted px-2 py-1 rounded-full hover:border-cyan hover:text-cyan transition-all duration-200">
+                📸 real
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat Counters -->
+        <div class="grid grid-cols-2 gap-4 opacity-0" data-reveal data-delay="200">
+          {stats.map((stat, i) => (
+            <div class="bg-surface border border-border rounded-xl p-4 hover:border-blue/50 transition-colors duration-300 group">
+              <div class="font-heading font-bold text-2xl text-blue group-hover:text-cyan transition-colors duration-300">
+                <span class="counter" data-target={stat.value}>0</span>
+                <span class="text-cyan">{stat.suffix}</span>
+              </div>
+              <div class="font-mono text-xs text-muted mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Text + Fun Facts -->
+      <div class="space-y-8">
+
+        <!-- Bio Text -->
+        <div class="space-y-4 opacity-0" data-reveal data-delay="150">
+          <p class="text-text/80 leading-relaxed">
+            Hey — I'm Argy, an Information Systems student at Unindra who somehow ended up teaching kids to code at
+            <span class="text-cyan font-medium">DigiKidz Cibubur</span> while simultaneously trying to become a data scientist.
+            Structured chaos, basically.
+          </p>
+          <p class="text-text/80 leading-relaxed">
+            I'm drawn to the intersection of <span class="text-blue font-medium">data, education, and technology</span> —
+            building ML models by day, debugging students' Scratch projects by afternoon.
+            My thesis is literally about predicting student performance, so yeah, data follows me everywhere.
+          </p>
+          <p class="text-text/80 leading-relaxed">
+            As an <span class="text-purple font-medium">INTP</span>, I overthink problems until they're elegant solutions.
+            I prefer async communication, clean pipelines, and dashboards that actually make sense.
+            If you've read this far — we'd probably get along.
+          </p>
+        </div>
+
+        <!-- Currently section -->
+        <div class="bg-surface border border-border rounded-xl p-5 space-y-3 opacity-0" data-reveal data-delay="250">
+          <div class="font-mono text-xs text-blue">// currently</div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+              <span class="text-sm text-text/70">Building thesis: DigiKidz student analytics system</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue animate-pulse flex-shrink-0"></span>
+              <span class="text-sm text-text/70">Learning: SHAP explainability & MLflow</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple animate-pulse flex-shrink-0"></span>
+              <span class="text-sm text-text/70">Teaching: Scratch & Python basics @ DigiKidz</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fun Facts Flip Cards -->
+        <div class="opacity-0" data-reveal data-delay="300">
+          <div class="font-mono text-xs text-muted mb-4">// hover or tap to flip</div>
+          <div class="grid grid-cols-2 gap-3">
+            {funFacts.map((fact) => (
+              <div class="flip-card h-24 cursor-pointer" tabindex="0" role="button">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front bg-surface border border-border rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 hover:border-blue/40 transition-colors">
+                    <span class="text-2xl">{fact.front.icon}</span>
+                    <span class="text-xs text-muted leading-tight">{fact.front.text}</span>
+                  </div>
+                  <!-- Back -->
+                  <div class="flip-card-back bg-surface border border-cyan/30 rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2">
+                    <span class="text-2xl">{fact.back.icon}</span>
+                    <span class="text-xs text-cyan/80 leading-tight italic">"{fact.back.text}"</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Flip Card */
+  .flip-card {
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner,
+  .flip-card:focus .flip-card-inner,
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Reveal animation */
+  [data-reveal] {
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(24px);
+  }
+
+  [data-reveal].revealed {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // ── Scroll Reveal ──
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const delay = parseInt(el.dataset.delay || '0');
+        setTimeout(() => el.classList.add('revealed'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Stat Counter ──
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const target = parseInt(el.dataset.target || '0');
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current.toString();
+          if (current >= target) clearInterval(timer);
+        }, 40);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => counterObserver.observe(el));
+
+  // ── Photo Toggle (sync with hero) ──
+  const realImgs    = [
+    document.getElementById('about-avatar-real') as HTMLImageElement,
+    document.getElementById('avatar-real') as HTMLImageElement,
+  ].filter(Boolean);
+
+  const illusImgs   = [
+    document.getElementById('about-avatar-illustrated') as HTMLImageElement,
+    document.getElementById('avatar-illustrated') as HTMLImageElement,
+  ].filter(Boolean);
+
+  const toggleBtns  = [
+    document.getElementById('about-photo-toggle') as HTMLButtonElement,
+    document.getElementById('photo-toggle') as HTMLButtonElement,
+  ].filter(Boolean);
+
+  let isReal = localStorage.getItem('avatarStyle') !== 'illustrated';
+
+  function syncAvatars() {
+    realImgs.forEach(img  => img.style.opacity  = isReal ? '1' : '0');
+    illusImgs.forEach(img => img.style.opacity  = isReal ? '0' : '1');
+    toggleBtns.forEach(btn => btn.textContent   = isReal ? '📸 real' : '🎨 illustrated');
+    localStorage.setItem('avatarStyle', isReal ? 'real' : 'illustrated');
+  }
+
+  syncAvatars();
+
+  toggleBtns.forEach(btn => {
+    btn?.addEventListener('click', () => {
+      isReal = !isReal;
+      syncAvatars();
+    });
+  });
+
+  // ── Flip card keyboard support ──
+  document.querySelectorAll('.flip-card').forEach(card => {
+    card.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        card.classList.toggle('flipped');
+      }
+    });
+  });
+</script>
